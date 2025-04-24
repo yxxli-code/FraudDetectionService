@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: FraudDetectionService
+  redis:
+    database: 0
+    host: localhost
+    timeout: 8000
+    port: 6379
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: transfer-event
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+aws:
+  sqs:
+    region: us-east-1
+    queueUrl:
+    maxNumberOfMessages: 10
+    waitTimeSeconds: 2
+
+x-rule:
+  version: 0
+  amountThreshold: 100000
+  targetUserIds:
+    - 高危用户001
+  timeWindowMinutes: 5
+  maxEventCount: 3
+  maxConsecutiveCount: 10
+  rules:
+    - AMOUNT_LIMIT#1
+    - BEHAVIOR_FREQUENCY#2
+    - SPECIFIC_USER#2
+    - CONSECUTIVE_COUNT#3
