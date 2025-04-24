@@ -265,4 +265,4 @@ The UserStates and KVCache are used to ensure service resilience(service restart
 The service can be deployed as multiple instances with HPA when either of the following requirement are met:
 
 - all rules are based on single event itself (check the business rule requirements)
-- UserStateTracker is extended to read UserState to KVCache on process of every event.
+- UserStateTracker is extended to read UserState from KVCache on process of every event (Now it's saved to KVCache on process of every event).
